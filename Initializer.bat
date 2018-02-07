@@ -1,9 +1,17 @@
 @echo off
 
+set /P repo=Enter a repository to clone: 
+set /P directory=Enter the name of the repository: 
+set /P user=Enter a user name: 
+set /P email=Enter an email address: 
 
-CHOICE /C yn /M "Is this a new repository?"
-IF "%0"=="Y" (
-	echo create new repository
-) else if "%0"=="N" (
-	echo enter existing repository to clone
-)
+git clone %repo%
+cd %directory%
+git fetch --all
+git checkout master
+git config --global user.name %user%
+git config --global user.email %email%
+
+echo %repo%
+echo %user%
+echo %email%
